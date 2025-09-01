@@ -125,7 +125,7 @@
       const currentCode = '' + hours + minutes; // مثال: الساعة 09:05 → "0905"
 
       if (payment !== currentCode) {
-        errorMsg.innerText = `❌ كود الدفع غير صحيح. الكود الحالي هو: ${currentCode}`;
+        errorMsg.innerText = "❌ لم يتم الدفع. برجاء الدخول على واتساب لطلب كود الدفع.";
         return;
       }
 
