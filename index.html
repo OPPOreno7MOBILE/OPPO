@@ -33,9 +33,7 @@
       font-weight:bold;
       margin-top:10px;
     }
-    .whatsapp-btn img {
-      width:22px; height:22px; margin-left:8px;
-    }
+    .whatsapp-btn img { width:22px; height:22px; margin-left:8px; }
     .whatsapp-btn:hover { background:#1ebd5a; }
   </style>
 </head>
@@ -128,8 +126,13 @@
       participants.push(participant);
       localStorage.setItem("participants", JSON.stringify(participants));
 
-      successMsg.innerText = "✅ تم التسجيل بنجاح!";
       document.getElementById("count").innerText = 5208 + participants.length;
+
+      // رسالة نجاح مع رقم الكاش
+      successMsg.innerHTML = `
+        ✅ تم التسجيل بنجاح!<br>
+        💰 قم بتحويل 100 جنيه على محفظة e&كاش: <strong>01141310586</strong>
+      `;
 
       startCountdown();
     }
@@ -142,7 +145,8 @@
 
         if (distance <= 0) {
           clearInterval(interval);
-          document.getElementById("countdown").innerText = "انتهت المسابقة!";
+          document.getElementById("countdown").innerText = "انتهت المسابقة! شكرًا لمشاركتكم.";
+          document.getElementById("form").style.display = "none";
           return;
         }
 
