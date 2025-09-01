@@ -1,7 +1,119 @@
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/OPPO_LOGO_2019.png" alt="Oppo Logo">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مسابقة OPPO</title>
+  <style>
+    body {
+      font-family: "Tahoma", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(135deg, #009e60, #007a4d);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      border-radius: 0 0 20px 20px;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      margin: 10px 0;
+    }
+
+    header p {
+      margin: 5px 0;
+      font-size: 1rem;
+    }
+
+    .btn {
+      background: #009e60;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      margin-top: 10px;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #007a4d;
+    }
+
+    .form-container {
+      display: none;
+      background: #fff;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .success {
+      color: #009e60;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    section {
+      margin: 20px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    section h2 {
+      color: #009e60;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    section ul li {
+      background: #f0fdf4;
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #d1fae5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #222;
+      color: #aaa;
+      font-size: 0.9rem;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
     <h1>اربح هاتف OPPO حديث</h1>
-    <p>عن طريق الاشتراك برسوم 100 جنيه مصري</p>
-    <p>بداية المسابقة: 1/9/2025 | النهاية: 7/9/2025</p>
+    <p>باشتراك رمزي 100 جنيه فقط</p>
+    <p>المسابقة: 1/9/2025 - 7/9/2025</p>
     <p>عدد المشاركين: <strong>5208</strong></p>
     <button class="btn" onclick="showForm()">اشترك الآن</button>
   </header>
@@ -16,7 +128,7 @@
   </div>
 
   <section>
-    <h2>أحدث أجهزة Oppo</h2>
+    <h2>أحدث أجهزة OPPO</h2>
     <ul>
       <li>Oppo Reno 11</li>
       <li>Oppo Find X7</li>
@@ -25,7 +137,7 @@
   </section>
 
   <footer>
-    حقوق النشر والملكية محفوظة © 2025 | المطور: Oppo
+    حقوق النشر © 2025 | مسابقة OPPO
   </footer>
 
   <script>
@@ -39,10 +151,10 @@
       const whatsapp = document.getElementById("whatsapp").value;
 
       if (name && cash && whatsapp) {
-        document.getElementById("successMsg").innerText = "تم التسجيل بنجاح!";
+        document.getElementById("successMsg").innerText = "✅ تم التسجيل بنجاح!";
         startCountdown();
       } else {
-        alert("من فضلك املأ كل البيانات.");
+        alert("⚠️ من فضلك املأ كل البيانات.");
       }
     }
 
@@ -64,11 +176,10 @@
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         document.getElementById("countdown").innerText =
-          `الوقت المتبقي: days يوم،{hours} ساعة، minutes دقيقة،{seconds} ثانية`;
+          `⏳ الوقت المتبقي: ${days} يوم، ${hours} ساعة، ${minutes} دقيقة، ${seconds} ثانية`;
       }, 1000);
     }
   </script>
 
 </body>
 </html>
-```
