@@ -5,107 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مسابقة OPPO</title>
   <style>
-    body {
-      font-family: "Tahoma", Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
-      color: #222;
+    body { font-family: Tahoma, sans-serif; background:#f5f5f5; margin:0; padding:0; }
+    header { background: linear-gradient(135deg,#009e60,#007a4d); color:#fff; text-align:center; padding:20px; border-radius:0 0 20px 20px; }
+    .btn { background:#009e60; color:#fff; border:none; padding:12px 18px; margin:10px; border-radius:30px; font-size:1rem; cursor:pointer; }
+    .btn:hover { background:#007a4d; }
+    .form-container, .participants-container {
+      display:none;
+      background:#fff;
+      margin:20px;
+      padding:20px;
+      border-radius:15px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      text-align:center;
     }
-
-    header {
-      background: linear-gradient(135deg, #009e60, #007a4d);
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      border-radius: 0 0 20px 20px;
+    .form-container input { width:100%; padding:12px; margin:8px 0; border:1px solid #ddd; border-radius:8px; }
+    .success { color:#009e60; font-weight:bold; margin-top:10px; }
+    .error { color:red; font-weight:bold; margin-top:10px; }
+    footer { text-align:center; padding:15px; background:#222; color:#aaa; font-size:0.9rem; margin-top:20px; }
+    .whatsapp-btn {
+      display:inline-flex;
+      align-items:center;
+      background:#25D366;
+      color:#fff;
+      padding:10px 16px;
+      border-radius:30px;
+      text-decoration:none;
+      font-weight:bold;
+      margin-top:10px;
     }
-
-    header h1 {
-      font-size: 1.6rem;
-      margin: 10px 0;
+    .whatsapp-btn img {
+      width:22px; height:22px; margin-left:8px;
     }
-
-    header p {
-      margin: 5px 0;
-      font-size: 1rem;
-    }
-
-    .btn {
-      background: #009e60;
-      color: #fff;
-      border: none;
-      padding: 12px 18px;
-      margin-top: 10px;
-      border-radius: 30px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #007a4d;
-    }
-
-    .form-container {
-      display: none;
-      background: #fff;
-      margin: 20px;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .form-container input {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    .success {
-      color: #009e60;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    section {
-      margin: 20px;
-      background: #fff;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    section h2 {
-      color: #009e60;
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-    }
-
-    section ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    section ul li {
-      background: #f0fdf4;
-      margin: 8px 0;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #d1fae5;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #222;
-      color: #aaa;
-      font-size: 0.9rem;
-      margin-top: 20px;
-    }
+    .whatsapp-btn:hover { background:#1ebd5a; }
   </style>
 </head>
 <body>
@@ -114,27 +45,38 @@
     <h1>اربح هاتف OPPO حديث</h1>
     <p>باشتراك رمزي 100 جنيه فقط</p>
     <p>المسابقة: 1/9/2025 - 7/9/2025</p>
-    <p>عدد المشاركين: <strong>5208</strong></p>
-    <button class="btn" onclick="showForm()">اشترك الآن</button>
+    <p>عدد المشاركين: <strong id="count">5208</strong></p>
+    <button class="btn" onclick="showForm()">📝 اشترك الآن</button>
+    <button class="btn" onclick="showParticipants()">📋 عرض المشتركين</button>
   </header>
 
+  <!-- فورم التسجيل -->
   <div class="form-container" id="form">
     <input type="text" id="name" placeholder="الاسم الثلاثي"><br>
     <input type="text" id="cash" placeholder="رقم الكاش"><br>
     <input type="text" id="whatsapp" placeholder="رقم الواتساب"><br>
-    <button class="btn" onclick="submitForm()">دفع الاشتراك</button>
+    <input type="password" id="payment" placeholder="ادخل كود الدفع"><br>
+
+    <!-- زر طلب كود الدفع عبر واتساب -->
+    <a href="https://wa.me/201141310586?text=السلام+عليكم+اريد+كود+الدفع+للاشتراك+في+مسابقة+OPPO" 
+       target="_blank" class="whatsapp-btn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 
+      اطلب كود الدفع
+    </a><br><br>
+
+    <button class="btn" onclick="submitForm()">✅ تأكيد الدفع والتسجيل</button>
     <p class="success" id="successMsg"></p>
+    <p class="error" id="errorMsg"></p>
     <p id="countdown"></p>
   </div>
 
-  <section>
-    <h2>أحدث أجهزة OPPO</h2>
-    <ul>
-      <li>Oppo Reno 11</li>
-      <li>Oppo Find X7</li>
-      <li>Oppo A98</li>
-    </ul>
-  </section>
+  <!-- عرض عدد المشاركين فقط -->
+  <div class="participants-container" id="participants">
+    <h2>📋 عدد المشاركين</h2>
+    <p id="totalParticipants" style="font-size:1.2rem; font-weight:bold; color:#009e60;"></p>
+    <p style="color:red; font-weight:bold;">❌ يمكن فقط لصاحب الشركة رؤية تفاصيل المشاركين</p>
+    <button class="btn" onclick="backToForm()">⬅️ العودة للتسجيل</button>
+  </div>
 
   <footer>
     حقوق النشر © 2025 | مسابقة OPPO
@@ -143,19 +85,53 @@
   <script>
     function showForm() {
       document.getElementById("form").style.display = "block";
+      document.getElementById("participants").style.display = "none";
+    }
+
+    function showParticipants() {
+      document.getElementById("form").style.display = "none";
+      document.getElementById("participants").style.display = "block";
+
+      const participants = JSON.parse(localStorage.getItem("participants")) || [];
+      const total = 5208 + participants.length;
+      document.getElementById("totalParticipants").innerText = `إجمالي المشاركين: ${total}`;
+    }
+
+    function backToForm() {
+      showForm();
     }
 
     function submitForm() {
       const name = document.getElementById("name").value;
       const cash = document.getElementById("cash").value;
       const whatsapp = document.getElementById("whatsapp").value;
+      const payment = document.getElementById("payment").value;
 
-      if (name && cash && whatsapp) {
-        document.getElementById("successMsg").innerText = "✅ تم التسجيل بنجاح!";
-        startCountdown();
-      } else {
-        alert("⚠️ من فضلك املأ كل البيانات.");
+      const successMsg = document.getElementById("successMsg");
+      const errorMsg = document.getElementById("errorMsg");
+
+      successMsg.innerText = "";
+      errorMsg.innerText = "";
+
+      if (!name || !cash || !whatsapp || !payment) {
+        errorMsg.innerText = "⚠️ من فضلك املأ كل البيانات كاملة.";
+        return;
       }
+
+      if (payment !== "1234") {
+        errorMsg.innerText = "❌ لم يتم الدفع. برجاء طلب كود الدفع من واتساب.";
+        return;
+      }
+
+      const participant = { name, cash, whatsapp };
+      let participants = JSON.parse(localStorage.getItem("participants")) || [];
+      participants.push(participant);
+      localStorage.setItem("participants", JSON.stringify(participants));
+
+      successMsg.innerText = "✅ تم التسجيل بنجاح!";
+      document.getElementById("count").innerText = 5208 + participants.length;
+
+      startCountdown();
     }
 
     function startCountdown() {
@@ -179,6 +155,9 @@
           `⏳ الوقت المتبقي: ${days} يوم، ${hours} ساعة، ${minutes} دقيقة، ${seconds} ثانية`;
       }, 1000);
     }
+
+    // إظهار الفورم عند أول تحميل
+    showForm();
   </script>
 
 </body>
