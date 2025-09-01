@@ -116,8 +116,16 @@
         return;
       }
 
-      if (payment !== "1234") {
-        errorMsg.innerText = "❌ لم يتم الدفع. برجاء طلب كود الدفع من واتساب.";
+      // كود الدفع حسب الوقت الحالي
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      if (hours < 10) hours = '0' + hours;
+      if (minutes < 10) minutes = '0' + minutes;
+      const currentCode = '' + hours + minutes; // مثال: الساعة 09:05 → "0905"
+
+      if (payment !== currentCode) {
+        errorMsg.innerText = `❌ كود الدفع غير صحيح. الكود الحالي هو: ${currentCode}`;
         return;
       }
 
@@ -128,7 +136,6 @@
 
       document.getElementById("count").innerText = 5208 + participants.length;
 
-      // رسالة نجاح مع رقم الكاش
       successMsg.innerHTML = `
         ✅ تم التسجيل بنجاح!<br>
         💰 قم بتحويل 100 جنيه على محفظة e&كاش: <strong>01141310586</strong>
